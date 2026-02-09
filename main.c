@@ -55,15 +55,15 @@ int main() {
 
     srand(time(NULL));
 
-    Vector2 ballPositions[ballCount], ballVelocitys[ballCount];
+    Vector2 ballPositions[ballCount], ballVelocities[ballCount];
     Color ballColors[ballCount];
 
     for (int i = 0; i < ballCount; i++) {
         ballPositions[i].x = rand() % (screenWidth - ballRadius * 2) + ballRadius;
         ballPositions[i].y = rand() % (screenHeight - ballRadius * 2) + ballRadius;
 
-        ballVelocitys[i].x = randomVelocity(5, 10, 10);
-        ballVelocitys[i].y = randomVelocity(5, 10, 10);
+        ballVelocities[i].x = randomVelocity(5, 10, 10);
+        ballVelocities[i].y = randomVelocity(5, 10, 10);
 
         ballColors[i] = generateRandomColor(0.8f, 0.7f);
     }
@@ -77,7 +77,7 @@ int main() {
             ClearBackground(RAYWHITE);
 
             for (int i = 0; i < ballCount; i++) {
-                Vector2 *pos = &ballPositions[i], *velocity = &ballVelocitys[i];
+                Vector2 *pos = &ballPositions[i], *velocity = &ballVelocities[i];
                 pos->x += velocity->x;
                 pos->y += velocity->y;
 
@@ -90,7 +90,7 @@ int main() {
                     velocity->y = -velocity->y;
                 }
 
-                checkCollisions(ballCount, ballPositions, ballVelocitys, ballRadius);
+                checkCollisions(ballCount, ballPositions, ballVelocities, ballRadius);
 
                 DrawCircleV(*pos, ballRadius, ballColors[i]);
             }
