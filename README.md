@@ -1,4 +1,4 @@
-# Balls - A simple raylib demo
+# Balls - A simple raylib demo in C11
 
 I wrote this simple program when I was learning raylib.
 It has no name, I just call it "balls" (pun unintended).
