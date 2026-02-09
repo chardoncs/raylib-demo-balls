@@ -26,8 +26,6 @@ static void applyImpulse(Vector2 ballAPos, Vector2 *ballAVelocity, Vector2 ballB
 }
 
 static void checkCollisions(int count, Vector2 ballsPos[], Vector2 ballsVelocity[], int radius) {
-    if (count < 2) return;
-
     for (int i = 0; i < count - 1; i++) {
         for (int j = i + 1; j < count; j++) {
             if (CheckCollisionCircles(ballsPos[i], radius, ballsPos[j], radius)) {
