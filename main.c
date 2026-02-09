@@ -14,7 +14,7 @@ static void applyImpulse(Vector2 ballAPos, Vector2 *ballAVelocity, Vector2 ballB
     Vector2 relativeVelocity = Vector2Subtract(*ballBVelocity, *ballAVelocity);
     float velocityInNormal = Vector2DotProduct(relativeVelocity, normal);
     if (velocityInNormal > 0) {
-        // Balls seperating
+        // Balls separating
         return;
     }
 
