@@ -1,12 +1,13 @@
 #include <stdbool.h>
-#include <stdlib.h>
 #include <time.h>
 
 #include "raylib.h"
 #include "raymath.h"
 
+//#define RDB_SCREENSAVER
+
 static Color generateRandomColor(float saturation, float value) {
-    return ColorFromHSV((float)(rand() % 360), saturation, value);
+    return ColorFromHSV((float)GetRandomValue(0, 360), saturation, value);
 }
 
 static void applyImpulse(Vector2 ballAPos, Vector2 *ballAVelocity, Vector2 ballBPos, Vector2 *ballBVelocity) {
@@ -41,7 +42,7 @@ static float randomVelocity(int minValue, int maxValue, int precision) {
         carry *= 10;
     }
 
-    return ((float)(rand() % ((maxValue + minValue) * carry))) / carry - minValue;
+    return ((float)GetRandomValue(minValue * carry, maxValue * carry)) / carry;
 }
 
 int main() {
@@ -51,23 +52,28 @@ int main() {
     const int ballCount = 10;
     const int ballRadius = 40;
 
-    srand(time(NULL));
+    SetRandomSeed(time(NULL));
 
     Vector2 ballPositions[ballCount], ballVelocities[ballCount];
     Color ballColors[ballCount];
 
     for (int i = 0; i < ballCount; i++) {
-        ballPositions[i].x = rand() % (screenWidth - ballRadius * 2) + ballRadius;
-        ballPositions[i].y = rand() % (screenHeight - ballRadius * 2) + ballRadius;
+        ballPositions[i].x = GetRandomValue(ballRadius, screenWidth - ballRadius);
+        ballPositions[i].y = GetRandomValue(ballRadius, screenHeight - ballRadius);
 
-        ballVelocities[i].x = randomVelocity(5, 10, 10);
-        ballVelocities[i].y = randomVelocity(5, 10, 10);
+        ballVelocities[i].x = randomVelocity(-10, 10, 2);
+        ballVelocities[i].y = randomVelocity(-10, 10, 2);
 
         ballColors[i] = generateRandomColor(0.8f, 0.7f);
     }
 
     InitWindow(screenWidth, screenHeight, "raylib test");
     SetTargetFPS(60);
+
+#ifdef RDB_SCREENSAVER
+    ToggleFullscreen();
+#endif
+
 
     while (!WindowShouldClose()) {
         BeginDrawing();
