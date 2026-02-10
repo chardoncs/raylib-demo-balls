@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <time.h>
 
-#include <raylib.h>
-#include <raymath.h>
+#include "raylib.h"
+#include "raymath.h"
 
 static Color generateRandomColor(float saturation, float value) {
     return ColorFromHSV((float)(rand() % 360), saturation, value);
