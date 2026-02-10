@@ -4,8 +4,6 @@
 #include "raylib.h"
 #include "raymath.h"
 
-//#define RDB_SCREENSAVER
-
 static Color generateRandomColor(float saturation, float value) {
     return ColorFromHSV((float)GetRandomValue(0, 360), saturation, value);
 }
@@ -69,11 +67,6 @@ int main() {
 
     InitWindow(screenWidth, screenHeight, "raylib test");
     SetTargetFPS(60);
-
-#ifdef RDB_SCREENSAVER
-    ToggleFullscreen();
-#endif
-
 
     while (!WindowShouldClose()) {
         BeginDrawing();
